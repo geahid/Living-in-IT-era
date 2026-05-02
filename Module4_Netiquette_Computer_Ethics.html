@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Guide – Module 4: Netiquette & Computer Ethics</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy: #0f1d3b;
+    --gold: #e8b84b;
+    --cream: #fdf6ec;
+    --teal: #1a7f6e;
+    --red: #c0392b;
+    --muted: #6b7a99;
+    --card: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--navy);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(232,184,75,0.12);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -30px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(26,127,110,0.1);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+  header p {
+    color: var(--gold);
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 860px;
+    margin: 2rem auto 0;
+    padding: 0 1rem;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    background: var(--navy);
+    color: rgba(255,255,255,0.55);
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  .tab-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+  .tab-btn:hover { color: #fff; }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--navy);
+    margin: 2rem 0 0.8rem;
+    padding-left: 0.6rem;
+    border-left: 4px solid var(--gold);
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(15,29,59,0.07);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(15,29,59,0.06);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+    gap: 1rem;
+  }
+  .card-header:hover { background: #f7f3ec; }
+  .card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--navy);
+    flex: 1;
+  }
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .tag-def { background: #e8f4f1; color: var(--teal); }
+  .tag-example { background: #fef3d8; color: #a0720a; }
+  .tag-types { background: #eee8ff; color: #5a3ea0; }
+  .tag-key { background: #fde8e8; color: var(--red); }
+  .tag-law { background: #e0f0ff; color: #1a56a0; }
+  .chevron {
+    font-size: 1.1rem;
+    color: var(--muted);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .card.open .chevron { transform: rotate(180deg); }
+
+  .card-body {
+    display: none;
+    padding: 0 1.2rem 1.2rem;
+    border-top: 1px solid #f0ece5;
+  }
+  .card.open .card-body { display: block; }
+  .card-body p, .card-body li {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: #2b3a5a;
+  }
+  .card-body ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+  .card-body li { margin-bottom: 0.3rem; }
+  .highlight {
+    background: linear-gradient(120deg, #fff3c2 0%, #fff3c2 100%);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.8rem;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    background: var(--navy);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .compare-table td {
+    padding: 0.45rem 0.8rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: #f9f7f4; }
+
+  .commandment-list {
+    counter-reset: cmd;
+    list-style: none;
+    padding-left: 0;
+  }
+  .commandment-list li {
+    counter-increment: cmd;
+    padding: 0.4rem 0.5rem 0.4rem 2.4rem;
+    position: relative;
+    border-radius: 6px;
+    margin-bottom: 0.3rem;
+    background: #f9f7f4;
+  }
+  .commandment-list li::before {
+    content: counter(cmd);
+    position: absolute;
+    left: 0.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 0.85rem;
+    background: var(--navy);
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0.4rem;
+  }
+
+  /* FLASHCARD MODE */
+  .flashcard-area { margin-top: 1.5rem; }
+  .fc-progress {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+  .flashcard {
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 6px 30px rgba(15,29,59,0.12);
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border: 2px solid transparent;
+  }
+  .flashcard:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(15,29,59,0.16); }
+  .flashcard.flipped { border-color: var(--teal); }
+  .fc-label {
+    position: absolute;
+    top: 1rem; left: 1.2rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .fc-question {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    color: var(--navy);
+    line-height: 1.45;
+  }
+  .fc-answer {
+    display: none;
+    font-size: 0.95rem;
+    color: #2b3a5a;
+    line-height: 1.65;
+    margin-top: 0.8rem;
+    white-space: pre-line;
+  }
+  .flashcard.flipped .fc-answer { display: block; }
+  .flashcard.flipped .fc-question { font-size: 1rem; color: var(--muted); }
+  .fc-hint { font-size: 0.78rem; color: var(--muted); margin-top: 1.5rem; }
+
+  .fc-controls {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.15s;
+  }
+  .btn-primary { background: var(--navy); color: #fff; }
+  .btn-primary:hover { background: #1a3060; }
+  .btn-gold { background: var(--gold); color: var(--navy); }
+  .btn-gold:hover { background: #d4a535; }
+  .btn-outline { background: transparent; border: 2px solid var(--navy); color: var(--navy); }
+  .btn-outline:hover { background: var(--navy); color: #fff; }
+
+  /* QUIZ */
+  .quiz-intro { text-align: center; padding: 2rem 0; }
+  .quiz-intro h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.6rem; }
+  .quiz-intro p { color: var(--muted); margin-bottom: 1.5rem; }
+  .quiz-q {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1.4rem 1.4rem 1rem;
+    box-shadow: 0 2px 12px rgba(15,29,59,0.07);
+    margin-bottom: 1.5rem;
+  }
+  .quiz-q-text {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  .quiz-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 0.4rem;
+    transition: background 0.15s;
+    border: 1.5px solid #e8e3db;
+    font-size: 0.93rem;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+  }
+  .quiz-opt:hover { background: #f7f3ec; border-color: var(--gold); }
+  .quiz-opt.correct { background: #e2f5ef; border-color: var(--teal); color: var(--teal); font-weight: 600; pointer-events: none; }
+  .quiz-opt.wrong { background: #fdecea; border-color: var(--red); color: var(--red); pointer-events: none; }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.7; }
+  .quiz-feedback { font-size: 0.88rem; margin-top: 0.6rem; padding: 0.5rem 0.8rem; border-radius: 6px; }
+  .quiz-feedback.ok { background: #e2f5ef; color: var(--teal); }
+  .quiz-feedback.bad { background: #fdecea; color: var(--red); }
+  .quiz-score {
+    text-align: center;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 14px;
+    padding: 2rem;
+    margin-top: 1rem;
+  }
+  .quiz-score h2 { font-family: 'Playfair Display', serif; font-size: 2rem; }
+  .quiz-score p { color: rgba(255,255,255,0.75); margin-top: 0.4rem; }
+  .big-score { font-size: 3rem; font-weight: 900; color: var(--gold); display: block; margin: 0.5rem 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Module 4 Study Guide</h1>
+  <p>Netiquette · Cybercrimes · Internet Threats</p>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('notes', this)">📖 Notes</button>
+    <button class="tab-btn" onclick="switchTab('flashcards', this)">🃏 Flashcards</button>
+    <button class="tab-btn" onclick="switchTab('quiz', this)">✏️ Quiz</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== NOTES TAB ===================== -->
+<div id="tab-notes" class="tab-content active">
+
+  <p class="section-label">Lesson 1 – Netiquette</p>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">What is Netiquette?</span>
+      <span class="tag tag-def">Definition</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Netiquette</span> (Network Etiquette) – a set of rules for behaving properly online. It is concerned with the "proper" way to communicate in an online environment.</p>
+      <p style="margin-top:0.6rem">It comes from <strong>Virginia Shea's Core Rules of Netiquette</strong> and applies to email, instant messaging, video calls, discussion boards, and social media.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Core Rules of Netiquette (Virginia Shea)</span>
+      <span class="tag tag-key">Key Concept</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <table class="compare-table">
+        <tr><th>#</th><th>Rule</th><th>Meaning</th></tr>
+        <tr><td>1</td><td><strong>Remember the Human</strong></td><td>Practice the Golden Rule — treat others as you want to be treated.</td></tr>
+        <tr><td>2</td><td><strong>Same standards as real life</strong></td><td>Don't lower your ethical behavior just because you're online.</td></tr>
+        <tr><td>3</td><td><strong>Know where you are</strong></td><td>Netiquette varies by platform — what's OK in text may not be OK in email.</td></tr>
+        <tr><td>4</td><td><strong>Respect time &amp; bandwidth</strong></td><td>Keep messages concise and meaningful; avoid unnecessary attachments.</td></tr>
+        <tr><td>5</td><td><strong>Make yourself look good</strong></td><td>Check spelling/grammar; be pleasant and polite.</td></tr>
+        <tr><td>6</td><td><strong>Share expert knowledge</strong></td><td>Share what you know; post useful resources and references.</td></tr>
+        <tr><td>7</td><td><strong>Control flame wars</strong></td><td>Don't fuel angry online exchanges — guide the discussion back to a productive tone.</td></tr>
+        <tr><td>8</td><td><strong>Respect others' privacy</strong></td><td>Handle private information carefully; don't share without consent.</td></tr>
+        <tr><td>9</td><td><strong>Don't abuse your power</strong></td><td>Having more knowledge/power doesn't give you the right to take advantage of others.</td></tr>
+        <tr><td>10</td><td><strong>Be forgiving of mistakes</strong></td><td>Not everyone knows the rules — respond to errors privately and kindly.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Basic Netiquette Tips</span>
+      <span class="tag tag-example">Practical</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Avoid slang, acronyms, and text talk</strong> – Use proper spelling and grammar (e.g., "your" not "ur").</li>
+        <li><strong>Avoid SCREAMING</strong> – Typing in all caps is rude online. Use bold or italics for emphasis instead.</li>
+        <li><strong>Proofread before sending</strong> – Check for spelling errors, missing content, and inaccurate information.</li>
+        <li><strong>Exercise good judgment</strong> – Private messages should not be forwarded without consent. Don't share sensitive personal info online.</li>
+        <li><strong>Respect diversity in viewpoints</strong> – Acknowledge others' perspectives; identify whose opinion you're sharing (e.g., "In my opinion…").</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Ten Commandments of Computer Ethics</span>
+      <span class="tag tag-key">Key Concept</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <ol class="commandment-list">
+        <li>Thou shalt not use a computer to harm other people.</li>
+        <li>Thou shalt not interfere with other people's computer work.</li>
+        <li>Thou shalt not snoop around in other people's computer files.</li>
+        <li>Thou shalt not use a computer to steal.</li>
+        <li>Thou shalt not use a computer to bear false witness.</li>
+        <li>Thou shalt not copy or use proprietary software for which you have not paid (without permission).</li>
+        <li>Thou shalt not use other people's computer resources without authorization or proper compensation.</li>
+        <li>Thou shalt not appropriate other people's intellectual output.</li>
+        <li>Thou shalt think about the social consequences of the program you are writing or the system you are designing.</li>
+        <li>Thou shalt always use a computer in ways that ensure consideration and respect for other humans.</li>
+      </ol>
+    </div>
+  </div>
+
+  <p class="section-label">Lesson 2 – Cybercrimes</p>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">What is Cybercrime?</span>
+      <span class="tag tag-def">Definition</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Cybercrime</span> – a crime in which a computer is the object of the crime OR used as a tool to commit an offense (e.g., hacking, phishing, spamming, child pornography).</p>
+      <p style="margin-top:0.6rem"><span class="highlight">Cyber</span> – refers to the characteristics of the culture of computers, information, technology, and virtual reality.</p>
+      <p style="margin-top:0.6rem"><span class="highlight">Virtual Self</span> – the persona you create about yourself virtually.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Philippine Laws on Cybercrime</span>
+      <span class="tag tag-law">Philippine Law</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><span class="highlight">RA 10175</span> – Cybercrime Prevention Act of 2012. Addresses legal issues concerning online interactions and the internet. Approved: September 12, 2012.</li>
+        <li><span class="highlight">RA 10173</span> – Data Privacy Act of 2012. Protects individual personal information.</li>
+        <li><span class="highlight">RA 10627</span> – Anti-Bullying Act of 2013. Covers cyberbullying.</li>
+        <li><span class="highlight">RA 9775</span> – Anti-Child Pornography Act of 2009.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Common Forms of Cybercrime</span>
+      <span class="tag tag-types">Types</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <table class="compare-table">
+        <tr><th>Crime</th><th>Description</th><th>Penalty</th></tr>
+        <tr><td><strong>Copyright Infringement</strong></td><td>Unauthorized use of copyrighted material (violation, piracy, or theft of exclusive rights)</td><td>Php 50,000–500,000 and/or prison mayor</td></tr>
+        <tr><td><strong>Plagiarism</strong></td><td>Using or imitating another author's work without authorization</td><td>Academic & legal consequences</td></tr>
+        <tr><td><strong>Computer Addiction</strong></td><td>Offline (excessive gaming) or Online (Internet addiction / excessive internet use)</td><td>—</td></tr>
+        <tr><td><strong>Hacking</strong></td><td>Unauthorized access/interference with computer systems; introducing viruses</td><td>6–12 yrs (prison mayor); 12–20 yrs if against critical infrastructure (reclusion temporal)</td></tr>
+        <tr><td><strong>Forgery/Fraud/Identity Theft</strong></td><td>Phishing, pharming, spam to steal usernames, passwords, credit card info</td><td>Max Php 200,000 fine or prison mayor</td></tr>
+        <tr><td><strong>Electronic Theft</strong></td><td>Illegal downloading, digital piracy, copyright infringement</td><td>Php 50,000–500,000 and/or prison mayor</td></tr>
+        <tr><td><strong>Cyberbullying</strong></td><td>Electronic communication used to bully or intimidate a person</td><td>Under RA 10627</td></tr>
+        <tr><td><strong>Cybersex</strong></td><td>Willful lascivious exhibition of sexual organs/activity via computer for favor or consideration</td><td>Min Php 200,000 and/or prison mayor</td></tr>
+        <tr><td><strong>Child Pornography</strong></td><td>Sexual exploitation of children committed through a computer system</td><td>12–20 yrs (reclusion temporal)</td></tr>
+        <tr><td><strong>Cyber Defamation</strong></td><td>Unprivileged false statement of fact that harms reputation of a person or company</td><td>6–12 yrs (prison mayor)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <p class="section-label">Lesson 3 – Internet Threats</p>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Hacking</span>
+      <span class="tag tag-key">Threat</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Hacking</span> – unauthorized access to a computer system. Cyber criminals gain access by finding security weaknesses or installing a Trojan horse (back door).</p>
+      <p style="margin-top:0.5rem"><strong>Types:</strong> Illegal Access, Illegal Interception, Data Interference, System Interference, Misuse of Devices, Malware Infection.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Malware</span>
+      <span class="tag tag-key">Threat</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Malware</span> – malicious software that infects your computer. Includes viruses, worms, Trojan horses, spyware, and adware.</p>
+      <p style="margin-top:0.5rem"><strong>What it can do:</strong> intimidate via scareware, reformat hard drive, alter/delete files, steal sensitive info, send emails on your behalf, take control of your computer.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Pharming vs. Phishing</span>
+      <span class="tag tag-types">Types</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <table class="compare-table">
+        <tr><th>Term</th><th>Description</th><th>How it Works</th></tr>
+        <tr><td><strong>Pharming</strong></td><td>Redirects you to a fake website even if URL is entered correctly</td><td>Spoofs a real site; tricks you into entering personal info</td></tr>
+        <tr><td><strong>Phishing</strong></td><td>Fake emails, texts, and websites disguised as authentic companies</td><td>Tricks you into giving usernames, passwords, and credit card numbers. Also called "spoofing".</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Ransomware</span>
+      <span class="tag tag-key">Threat</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Ransomware</span> – malware that restricts access to your computer/files and demands payment to remove the restriction. Spread via phishing emails or pop-up ads.</p>
+      <ul>
+        <li><strong>Lockscreen ransomware</strong> – displays an image blocking access to your computer.</li>
+        <li><strong>Encryption ransomware</strong> – encrypts files on your hard drive (and sometimes USB/cloud drives).</li>
+      </ul>
+      <p style="margin-top:0.6rem"><strong>What to do:</strong> Do NOT pay the ransom. Contact a reputable technician. Regularly back up your data to an external drive.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Spam</span>
+      <span class="tag tag-key">Threat</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Spam</span> – mass distribution of unsolicited messages, advertising, or pornography to addresses found online (social media, company websites, blogs).</p>
+      <p style="margin-top:0.5rem"><strong>What it can do:</strong> flood you with junk mail, trick you into clicking malicious links, serve as a vehicle for malware and fraud.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Spyware & Adware</span>
+      <span class="tag tag-key">Threat</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Spyware/Adware</span> – software that secretly collects personal information without your knowledge. Often disguised as a "free" download. Difficult to remove and can install viruses.</p>
+      <p style="margin-top:0.5rem"><strong>What it can do:</strong> send your passwords and browsing habits to third parties, change how your computer runs, redirect you to unwanted sites, flood you with pop-up ads.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Trojan Horses</span>
+      <span class="tag tag-key">Threat</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Trojan Horse</span> – a malicious program disguised as or embedded within legitimate software. It installs and runs automatically once downloaded.</p>
+      <p style="margin-top:0.5rem"><strong>What it can do:</strong> delete files, hack other computers using yours, watch you via webcam, log keystrokes (like credit card numbers), and record usernames/passwords.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Viruses & Worms</span>
+      <span class="tag tag-types">Types</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <table class="compare-table">
+        <tr><th></th><th>Virus</th><th>Worm</th></tr>
+        <tr><td><strong>How it spreads</strong></td><td>Attaches to files or programs; spread via email attachments or downloads</td><td>Self-replicating; does NOT attach to files — works on its own</td></tr>
+        <tr><td><strong>Lives in</strong></td><td>Hard drive / program files</td><td>Computer memory (RAM)</td></tr>
+        <tr><td><strong>Damage</strong></td><td>Sends spam, hijacks browser, disables security, spreads to USB drives</td><td>Shuts down parts of internet; wreaks havoc on internal networks; causes massive financial losses</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Wi-Fi Eavesdropping</span>
+      <span class="tag tag-key">Threat</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <p><span class="highlight">Wi-Fi Eavesdropping</span> – virtual "listening in" on information shared over an unsecure (unencrypted) Wi-Fi network.</p>
+      <p style="margin-top:0.5rem"><strong>What it can do:</strong> potentially access your computer and steal logins, passwords, and other personal information.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleCard(this)">
+    <div class="card-header">
+      <span class="card-title">Signs Your Computer Is Infected</span>
+      <span class="tag tag-example">Checklist</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>Takes longer than usual to start up, restarts on its own, or doesn't start at all.</li>
+        <li>Programs take a long time to launch.</li>
+        <li>Files and data have disappeared.</li>
+        <li>System and programs crash constantly.</li>
+        <li>Browser homepage has changed without your permission.</li>
+        <li>Web pages are slow to load or screen looks distorted.</li>
+        <li>Programs are running without your control.</li>
+      </ul>
+      <p style="margin-top:0.6rem"><strong>What to do:</strong> Update and run your security software. If unsure, seek professional technical help.</p>
+    </div>
+  </div>
+
+</div><!-- end notes tab -->
+
+<!-- ===================== FLASHCARDS TAB ===================== -->
+<div id="tab-flashcards" class="tab-content">
+  <div class="flashcard-area">
+    <p class="fc-progress" id="fc-counter">Card 1 of 14</p>
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <span class="fc-label" id="fc-side">QUESTION</span>
+      <div class="fc-question" id="fc-q"></div>
+      <div class="fc-answer" id="fc-a"></div>
+      <p class="fc-hint">Tap to reveal answer</p>
+    </div>
+    <div class="fc-controls">
+      <button class="btn btn-outline" onclick="fcNav(-1)">← Prev</button>
+      <button class="btn btn-gold" onclick="flipCard()">Flip</button>
+      <button class="btn btn-primary" onclick="fcNav(1)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== QUIZ TAB ===================== -->
+<div id="tab-quiz" class="tab-content">
+  <div class="quiz-intro" id="quiz-intro">
+    <h2>Test Yourself</h2>
+    <p>10 multiple-choice questions covering all 3 lessons.</p>
+    <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+  </div>
+  <div id="quiz-body" style="display:none"></div>
+</div>
+
+</main>
+
+<script>
+// ---- TAB SWITCHING ----
+function switchTab(name, el) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
+}
+
+function toggleCard(el) {
+  el.classList.toggle('open');
+}
+
+// ---- FLASHCARDS ----
+const flashcards = [
+  {
+    q: "What is Netiquette?",
+    a: "Netiquette (Network Etiquette) is a set of rules for behaving properly online. It governs the proper way to communicate in email, messaging, discussion boards, and social media."
+  },
+  {
+    q: "Name at least 5 of Virginia Shea's Core Rules of Netiquette.",
+    a: "1. Remember the Human\n2. Adhere to the same standards as real life\n3. Know where you are in cyberspace\n4. Respect others' time & bandwidth\n5. Make yourself look good online\n6. Share expert knowledge\n7. Help keep flame wars under control\n8. Respect others' privacy\n9. Don't abuse your power\n10. Be forgiving of others' mistakes"
+  },
+  {
+    q: "What does it mean to 'SCREAM' in online communication?",
+    a: "Typing an entire message in ALL CAPITAL LETTERS is called screaming. It is distracting and considered rude in professional online environments."
+  },
+  {
+    q: "What is the difference between pharming and phishing?",
+    a: "Pharming redirects you to a fake website even when you type the correct URL.\nPhishing uses fake emails, texts, or websites disguised as real companies to steal your personal and financial information. Phishing is also called 'spoofing.'"
+  },
+  {
+    q: "What is Cybercrime? Give 3 examples.",
+    a: "Cybercrime is a crime where a computer is either the target or the tool used to commit an offense.\nExamples: Hacking, Phishing, Cyberbullying, Child Pornography, Cyber Defamation, Electronic Theft."
+  },
+  {
+    q: "What is RA 10175 and when was it signed?",
+    a: "Republic Act No. 10175 is the Cybercrime Prevention Act of 2012. It was approved on September 12, 2012 and addresses legal issues concerning online interactions and the internet in the Philippines."
+  },
+  {
+    q: "What are the two types of Ransomware?",
+    a: "1. Lockscreen Ransomware – displays an image that prevents you from accessing your computer.\n2. Encryption Ransomware – encrypts files on your hard drive and other drives, preventing you from opening them."
+  },
+  {
+    q: "What is the difference between a Virus and a Worm?",
+    a: "A Virus attaches itself to files or programs and spreads through email attachments or downloads.\nA Worm does NOT attach to files — it works on its own in computer memory and self-replicates through networks."
+  },
+  {
+    q: "What is a Trojan Horse?",
+    a: "A Trojan Horse is a malicious program disguised as or embedded within legitimate software. It installs and runs automatically once downloaded. It can delete files, log keystrokes, watch you via webcam, and record passwords."
+  },
+  {
+    q: "What is Wi-Fi Eavesdropping?",
+    a: "Wi-Fi Eavesdropping is virtual 'listening in' on information shared over an unsecured (unencrypted) Wi-Fi network. Criminals can potentially access your computer and steal your logins and passwords."
+  },
+  {
+    q: "State the 1st and 10th Commandments of Computer Ethics.",
+    a: "1st: Thou shalt not use a computer to harm other people.\n10th: Thou shalt always use a computer in ways that ensure consideration and respect for other humans."
+  },
+  {
+    q: "What is Spyware and how does it usually get installed?",
+    a: "Spyware is software that secretly collects your personal information without your knowledge. It often comes disguised as a 'free' download and installs automatically with or without your consent. It is difficult to remove."
+  },
+  {
+    q: "What is the penalty for Hacking under Philippine law?",
+    a: "6–12 years (prison mayor) for standard hacking offenses.\n12–20 years (reclusion temporal) if committed against critical infrastructure of the Philippines."
+  },
+  {
+    q: "List 4 signs that your computer may be infected with malware.",
+    a: "1. Takes much longer to start up or restarts on its own.\n2. Programs are slow to launch.\n3. Files and data have disappeared.\n4. Browser homepage has changed without your permission.\n5. System crashes constantly.\n6. Programs running without your control."
+  },
+];
+
+let fcIndex = 0;
+let fcFlipped = false;
+
+function renderCard() {
+  const card = flashcards[fcIndex];
+  document.getElementById('fc-q').textContent = card.q;
+  document.getElementById('fc-a').textContent = card.a;
+  document.getElementById('fc-counter').textContent = `Card ${fcIndex + 1} of ${flashcards.length}`;
+  const el = document.getElementById('flashcard');
+  el.classList.remove('flipped');
+  document.getElementById('fc-side').textContent = 'QUESTION';
+  fcFlipped = false;
+}
+
+function flipCard() {
+  const el = document.getElementById('flashcard');
+  fcFlipped = !fcFlipped;
+  el.classList.toggle('flipped', fcFlipped);
+  document.getElementById('fc-side').textContent = fcFlipped ? 'ANSWER' : 'QUESTION';
+}
+
+function fcNav(dir) {
+  fcIndex = (fcIndex + dir + flashcards.length) % flashcards.length;
+  renderCard();
+}
+
+renderCard();
+
+// ---- QUIZ ----
+const questions = [
+  {
+    q: "What is Netiquette?",
+    opts: ["A type of cybercrime", "A set of rules for behaving properly online", "A Philippine law on internet use", "A type of malware"],
+    ans: 1,
+    exp: "Netiquette (Network Etiquette) is a set of rules for behaving properly in online communication."
+  },
+  {
+    q: "Typing an entire message in ALL CAPS online is called:",
+    opts: ["Flaming", "Spamming", "Screaming", "Phishing"],
+    ans: 2,
+    exp: "Typing in all capital letters is called 'screaming' and is considered rude in professional online environments."
+  },
+  {
+    q: "Which Philippine law specifically addresses Cybercrime and online interactions?",
+    opts: ["RA 9775", "RA 10173", "RA 10175", "RA 10627"],
+    ans: 2,
+    exp: "RA 10175 is the Cybercrime Prevention Act of 2012, signed on September 12, 2012."
+  },
+  {
+    q: "A criminal redirects you to a fake bank website even though you typed the correct URL. This is called:",
+    opts: ["Phishing", "Pharming", "Ransomware", "Spyware"],
+    ans: 1,
+    exp: "Pharming redirects legitimate URLs to malicious fake websites. Phishing uses fake emails/messages instead."
+  },
+  {
+    q: "Which type of ransomware encrypts the files on your hard drive?",
+    opts: ["Lockscreen ransomware", "Spyware", "Encryption ransomware", "Adware"],
+    ans: 2,
+    exp: "Encryption ransomware encrypts your files so you can't open them, then demands payment."
+  },
+  {
+    q: "What is the key difference between a Virus and a Worm?",
+    opts: [
+      "A virus spreads through Wi-Fi; a worm uses email",
+      "A worm attaches to files; a virus works alone",
+      "A virus attaches to files; a worm self-replicates without attaching to files",
+      "There is no difference — they are the same"
+    ],
+    ans: 2,
+    exp: "A virus attaches itself to files/programs. A worm works independently in memory and spreads on its own."
+  },
+  {
+    q: "A malicious program disguised as legitimate software that installs automatically is called:",
+    opts: ["Spyware", "Trojan Horse", "Worm", "Ransomware"],
+    ans: 1,
+    exp: "A Trojan Horse is malicious software disguised as or embedded in legitimate software."
+  },
+  {
+    q: "What is the penalty for Child Pornography under Philippine Cybercrime law?",
+    opts: ["6–12 years", "Max Php 200,000 fine", "12–20 years (reclusion temporal)", "Php 50,000–500,000 fine"],
+    ans: 2,
+    exp: "Child Pornography under RA 9775 (committed via computer) carries a penalty of 12–20 years or reclusion temporal."
+  },
+  {
+    q: "Which of the following is NOT one of Virginia Shea's Core Rules of Netiquette?",
+    opts: [
+      "Remember the Human",
+      "Share expert knowledge",
+      "Always use formal English",
+      "Be forgiving of others' mistakes"
+    ],
+    ans: 2,
+    exp: "'Always use formal English' is not one of the 10 core rules. The rules focus on behavior and respect, not language formality."
+  },
+  {
+    q: "Wi-Fi Eavesdropping involves:",
+    opts: [
+      "Installing malware on a computer",
+      "Listening to phone calls wirelessly",
+      "Intercepting data over an unsecured Wi-Fi network",
+      "Sending spam through public hotspots"
+    ],
+    ans: 2,
+    exp: "Wi-Fi Eavesdropping is virtually 'listening in' on information shared over an unsecured (unencrypted) Wi-Fi network."
+  },
+];
+
+let quizAnswers = [];
+let quizSubmitted = [];
+
+function startQuiz() {
+  document.getElementById('quiz-intro').style.display = 'none';
+  quizAnswers = new Array(questions.length).fill(null);
+  quizSubmitted = new Array(questions.length).fill(false);
+  renderQuiz();
+  document.getElementById('quiz-body').style.display = 'block';
+}
+
+function renderQuiz() {
+  const body = document.getElementById('quiz-body');
+  body.innerHTML = '';
+  questions.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.innerHTML = `<div class="quiz-q-text">${qi+1}. ${q.q}</div>`;
+    q.opts.forEach((opt, oi) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.onclick = () => answerQ(qi, oi);
+      div.appendChild(btn);
+    });
+    const fb = document.createElement('div');
+    fb.id = `fb-${qi}`;
+    div.appendChild(fb);
+    body.appendChild(div);
+  });
+  const scoreBtn = document.createElement('div');
+  scoreBtn.style.textAlign = 'center';
+  scoreBtn.style.marginTop = '1rem';
+  scoreBtn.innerHTML = `<button class="btn btn-gold" onclick="showScore()">Submit All & See Score</button>`;
+  body.appendChild(scoreBtn);
+}
+
+function answerQ(qi, oi) {
+  if (quizSubmitted[qi]) return;
+  quizSubmitted[qi] = true;
+  quizAnswers[qi] = oi;
+  const q = questions[qi];
+  const qDiv = document.querySelectorAll('.quiz-q')[qi];
+  const opts = qDiv.querySelectorAll('.quiz-opt');
+  opts.forEach((btn, idx) => {
+    if (idx === q.ans) btn.classList.add('correct');
+    else if (idx === oi && oi !== q.ans) btn.classList.add('wrong');
+    else btn.classList.add('disabled');
+  });
+  const fb = document.getElementById(`fb-${qi}`);
+  fb.className = 'quiz-feedback ' + (oi === q.ans ? 'ok' : 'bad');
+  fb.textContent = (oi === q.ans ? '✓ Correct! ' : '✗ Incorrect. ') + q.exp;
+}
+
+function showScore() {
+  const correct = quizAnswers.filter((a, i) => a === questions[i].ans).length;
+  const total = questions.length;
+  const pct = Math.round(correct / total * 100);
+  const msg = pct >= 80 ? "Excellent! You're ready to recite! 🎉" : pct >= 60 ? "Good effort — review the tricky ones." : "Keep reviewing — you've got this! 💪";
+  const scoreDiv = document.createElement('div');
+  scoreDiv.className = 'quiz-score';
+  scoreDiv.innerHTML = `<h2>Quiz Complete!</h2><span class="big-score">${correct}/${total}</span><p>${pct}% · ${msg}</p><br><button class="btn btn-gold" onclick="restartQuiz()">Try Again</button>`;
+  document.getElementById('quiz-body').appendChild(scoreDiv);
+}
+
+function restartQuiz() {
+  document.getElementById('quiz-body').style.display = 'none';
+  document.getElementById('quiz-intro').style.display = 'block';
+  document.getElementById('quiz-body').innerHTML = '';
+}
+</script>
+</body>
+</html>
