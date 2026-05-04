@@ -916,7 +916,7 @@ function showScore() {
   const correct = quizAnswers.filter((a, i) => a === questions[i].ans).length;
   const total = questions.length;
   const pct = Math.round(correct / total * 100);
-  const msg = pct >= 80 ? "Excellent! You're ready to recite! 🎉" : pct >= 60 ? "Good effort — review the tricky ones." : "Keep reviewing — you've got this! 💪";
+  const msg = pct >= 80 ? "Excellent! You're ready to recite! " : pct >= 60 ? "Good effort — review the tricky ones." : "Keep reviewing — you've got this! ";
   const scoreDiv = document.createElement('div');
   scoreDiv.className = 'quiz-score';
   scoreDiv.innerHTML = `<h2>Quiz Complete!</h2><span class="big-score">${correct}/${total}</span><p>${pct}% · ${msg}</p><br><button class="btn btn-gold" onclick="restartQuiz()">Try Again</button>`;
